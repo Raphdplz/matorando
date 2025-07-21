@@ -138,6 +138,20 @@
     </div>
   </section>
 
+  <section id="reservation-bar">
+    <label for="start-date">📅 Début :</label>
+    <input type="date" id="start-date">
+    <label for="end-date">Fin :</label>
+    <input type="date" id="end-date">
+    <button onclick="clearCart()">Vider le panier</button>
+  </section>
+
+  <section id="cart-summary">
+    <h3>🧺 Votre panier</h3>
+    <ul id="cart-list"></ul>
+    <button onclick="submitReservation()">Valider la réservation</button>
+  </section>
+
   <!-- Section Contact -->
   <section class="section" id="contact">
     <h2>Contact</h2>
