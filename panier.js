@@ -1,27 +1,27 @@
 <script>
 let cart = [];
 
-function addToCart(id, name) {
-  const startDate = document.getElementById("start-date").value;
-  const endDate = document.getElementById("end-date").value;
+function addToCart(id, nom) {
+  const startDate = document.getElementById("date-debut").value;
+  const endDate = document.getElementById("date-fin").value;
 
   if (!startDate || !endDate) {
     alert("Merci de sélectionner les dates.");
     return;
   }
 
-  cart.push({ id, name, startDate, endDate });
+  cart.push({ id, nom, startDate, endDate });
   updateCartDisplay();
 }
 
 function updateCartDisplay() {
-  const list = document.getElementById("cart-list");
-  list.innerHTML = "";
+  const liste = document.getElementById("cart-liste");
+  liste.innerHTML = "";
 
-  cart.forEach(item => {
+  cart.forEach((article) => {
     const li = document.createElement("li");
-    li.textContent = `${item.name} (${item.startDate} ➝ ${item.endDate})`;
-    list.appendChild(li);
+    li.textContent = `${article.nom} (${article.startDate} → ${article.endDate})`;
+    liste.appendChild(li);
   });
 }
 
@@ -35,8 +35,18 @@ function submitReservation() {
   if (!tel) return;
 
   // Simule l'envoi
-  console.log("Réservation envoyée !", cart, tel);
+  console.log("Réservation envoyée :", cart, tel);
   alert("Réservation envoyée !");
   clearCart();
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".add-to-cart").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const id = this.dataset.id;
+      const nom = this.dataset.nom;
+      addToCart(id, nom);
+    });
+  });
+});
 </script>
