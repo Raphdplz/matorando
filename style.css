@@ -178,4 +178,28 @@ body {
   margin-top: 4px;
 }
 
+#reservation-bar {
+  display: flex;
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 600px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#cart-summary {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+#cart-summary ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+
 
