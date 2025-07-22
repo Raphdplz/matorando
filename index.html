@@ -138,59 +138,11 @@
     </div>
   </section>
 
-  <form id="reservation-form">
-    <label>Nom :
-      <input type="text" name="nom" required>
-    </label><br>
-
-    <label>Numéro de téléphone :
-      <input type="tel" name="telephon" required>
-    </label><br>
-
-    <label>Date de location :
-      <input type="date" name="dates" required>
-    </label><br>
-
-    <label>Articles souhaités :</label><br>
-    <label><input type="checkbox" name="articles" value="Tente"> Tente</label><br>
-    <label><input type="checkbox" name="articles" value="Sac de couchage"> Sac de couchage</label><br>
-    <label><input type="checkbox" name="articles" value="Lampe frontale"> Lampe frontale</label><br>
-
-    <button type="submit">Envoyer</button>
-  </form>
-
   <!-- Section Contact -->
   <section class="section" id="contact">
     <h2>Contact</h2>
     <p>📩 Contact : <a href="mailto:matorando13@gmail.com">matorando13@gmail.com</a></p>
   </section>
-
-  <script src="https://cdn.emailjs.com/sdk/latest/email.min.js"></script>
-  <script>
-    emailjs.init("OOFjwNTiesY8dKkl0"); // remplace par ta vraie clé publique
-
-    document.getElementById('reservation-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const checkedArticles = Array.from(document.querySelectorAll('input[name="articles"]:checked'))
-        .map(el => el.value)
-        .join(', ');
-
-      const formData = {
-        nom: this.nom.value,
-        telephone: this.telephone.value,
-        dates: this.dates.value,
-        cart: checkedArticles,
-      };
-
-      emailjs.send("gmail_smtp", "template_oijxksn", formData)
-        .then(function(response) {
-          alert("Formulaire envoyé avec succès !");
-        }, function(error) {
-          alert("Erreur lors de l’envoi : " + JSON.stringify(error));
-        });
-    });
-  </script>
   
 </body>
 </html>
