@@ -144,5 +144,54 @@
     <p>📩 Contact : <a href="mailto:matorando13@gmail.com">matorando13@gmail.com</a></p>
   </section>
   
+  <form id="reservation-form">
+    <label>Nom :
+      <input type="text" name="user_name" required>
+    </label><br><br>
+
+    <label>Numéro de téléphone :
+      <input type="tel" name="user_phone" required>
+    </label><br><br>
+
+    <label>Date de location :
+      <input type="date" name="location_date" required>
+    </label><br><br>
+
+    <label>Articles à louer :</label><br>
+    <label><input type="checkbox" name="articles" value="Tente"> Tente</label><br>
+    <label><input type="checkbox" name="articles" value="Sac de couchage"> Sac de couchage</label><br>
+    <label><input type="checkbox" name="articles" value="Réchaud"> Réchaud</label><br><br>
+
+    <button type="submit">Réserver</button>
+  </form>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    emailjs.init("TON_EMAILJS_PUBLIC_KEY"); // remplace avec ta vraie clé publique EmailJS
+
+    document.getElementById("reservation-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const checkedArticles = Array.from(document.querySelectorAll('input[name="articles"]:checked'))
+        .map(el => el.value)
+        .join(', ');
+
+      const formData = {
+        user_name: this.user_name.value,
+        user_phone: this.user_phone.value,
+        location_date: this.location_date.value,
+        articles: checkedArticles
+      };
+
+      emailjs.send("TON_SERVICE_ID", "TON_TEMPLATE_ID", formData)
+        .then(() => {
+          alert("Réservation envoyée !");
+          this.reset();
+        }, (error) => {
+          alert("Erreur lors de l’envoi : " + JSON.stringify(error));
+        });
+    });
+  </script>
+  
 </body>
 </html>
